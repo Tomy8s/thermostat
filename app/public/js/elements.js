@@ -4,6 +4,7 @@ $(document).ready(function() {
     $("#temperature_display").val(thermostat.temperature());
     $("#temperature_display").css("background-color", thermostat.screenColour());
     $("#temperatureSlider").val(thermostat.temperature());
+    $.post('/update', { temperature: thermostat.temperature(), power_saving: thermostat.powerSaving(), location: city });
   };
 
   update();
