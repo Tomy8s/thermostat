@@ -11,13 +11,14 @@ class Thermostat < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    puts "current user is:::::::::::::::::::::::" 
+    p current_user
     erb :index
   end
 
   post '/update' do
-    p current_user
     current_user.update(params)
-    true
+    erb :true
   end
 
   get '/sign_up' do
