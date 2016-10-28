@@ -15,7 +15,9 @@ class Thermostat < Sinatra::Base
   end
 
   post '/update' do
-    @current_user.update(temperature: params(:temperature), power_saving: params(:power_saving), location: params(:location))
+    p current_user
+    current_user.update(params)
+    true
   end
 
   get '/sign_up' do
@@ -23,9 +25,8 @@ class Thermostat < Sinatra::Base
   end
 
   post '/sign_up' do
-    p params
-    user = User.create(name: params(:name), email: params(:email), username: params(:username), password: params(:password))
-    # session[:user_id] = user.id
+    @user = User.create(params)
+    session[:user_id] = @user.id
     redirect('/')
   end
 
